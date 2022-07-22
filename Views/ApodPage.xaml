@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpaceScience.Views.ApodPage"
+             NavigationPage.HasNavigationBar="True"
+             Title="ApodPage">
+    <Grid Margin="0"
+          Padding="0"
+          RowDefinitions="50,*">
+
+        <!--temp header-->
+        <Grid Margin="0"
+                Grid.Row="0"  
+                Padding="0"
+                ColumnSpacing="0"
+                HeightRequest="50"
+                ColumnDefinitions="50,*,50">
+            <ImageButton 
+                        Grid.Column="0"
+                        Source="back_icon"
+                        HeightRequest="30"
+                        Command="{Binding GoBack}"/>
+
+            <Label 
+                        Grid.Column="1"
+                        Text="{Binding Title}"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"/>
+        </Grid>
+
+        <!-- APOD container-->
+        <ScrollView Grid.Row="1"
+                    Margin="15,5"
+                    IsVisible="{Binding IsApod}">
+            <VerticalStackLayout>
+
+                <Label 
+                        Text="{Binding Apod.Explanation}"
+                        FontSize="Body"/>
+
+
+                <Label 
+                        Text="{Binding Apod.Title}"
+                        FontSize="Body"
+                        FontAttributes="Bold"/>
+
+                <Image 
+                        Source="{Binding Apod.Url}"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <ActivityIndicator 
+                Grid.Row="1"
+                Style="{StaticResource LoadingStyle}"/>
+
+    </Grid>
+</ContentPage>
