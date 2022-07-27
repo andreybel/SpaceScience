@@ -2,15 +2,96 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SpaceScience.Views.MarsPage"
+             xmlns:converters="clr-namespace:SpaceScience.Converters;assembly=SpaceScience"
+             xmlns:cells="clr-namespace:SpaceScience.Views.Cells;assembly=SpaceScience"
              Title="MarsPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolToColorConverter x:Key="SelectedButtonConverter"
+                                             TrueColor="{StaticResource Primary}"
+                                             FalseColor="{StaticResource Secondary}"
+                                             NullColor="White"/>
+
+            <Style TargetType="Button" x:Key="menuPrimaryButton">
+                <Setter Property="TextColor" Value="{DynamicResource White}"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource Primary}"/>
+                <Setter Property="BorderColor" Value="{DynamicResource Primary}"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Padding" Value="0,10"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="BorderWidth" Value="2"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <!--<NavigationPage.TitleView>
         <Label Text="Mars"/>
     </NavigationPage.TitleView>-->
-    
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <Grid Margin="0"
+          Padding="0"
+          RowDefinitions="50,*">
+
+        <!--temporary header-->
+        <Grid Grid.Row="0"
+              ColumnDefinitions="50,*,50">
+            <ImageButton Grid.Column="0"
+                         Source="back_icon"
+                         Command="{Binding GoBack}"
+                         Margin="10"/>
+
+            <Label Grid.Column="1"
+                   Text="{Binding Title}"
+                   TextColor="{DynamicResource PrimaryColor}"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"/>
+        </Grid>
+
+        <!--MARS container-->
+        <Grid 
+                Grid.Row="1"
+                IsVisible="{Binding IsMars}"
+                Margin="{OnPlatform iOS='15,30,15,15', Default='15'}"
+                RowDefinitions="50, *">
+
+            <Grid  
+                Grid.Row="0"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="5">
+                <Button Grid.Column="0"
+                        Style="{StaticResource menuPrimaryButton}"
+                        BackgroundColor="{Binding IsMarsByCamera, Converter={StaticResource SelectedButtonConverter}}"
+                        Text="By Camera"
+                        Command="{Binding GoSelectMarsSource}"
+                        CommandParameter="ByCamera"/>
+
+                <Button Grid.Column="1"
+                        Style="{StaticResource menuPrimaryButton}"
+                        Text="By Date"
+                        BackgroundColor="{Binding IsMarsByDate, Converter={StaticResource SelectedButtonConverter}}"
+                        Command="{Binding GoSelectMarsSource}"
+                        CommandParameter="ByDate"/>
+            </Grid>
+
+            <cells:MarsByCamera Grid.Row="1"
+                                  IsVisible="{Binding IsMarsByCamera}"/>
+
+            <cells:MarsByDate Grid.Row="1"
+                                  IsVisible="{Binding IsMarsByDate}"/>
+
+
+        </Grid>
+
+
+        <ActivityIndicator 
+                Grid.Row="1"
+                Style="{StaticResource LoadingStyle}"/>
+    </Grid>
 </ContentPage>

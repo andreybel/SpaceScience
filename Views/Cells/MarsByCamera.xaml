@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:SpaceScience.Converters;assembly=SpaceScience"
+             x:Class="SpaceScience.Views.Cells.MarsByCamera"
+             x:Name="cameraView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:BoolToColorConverter x:Key="SelectedButtonConverter"
+                                             TrueColor="{StaticResource Primary}"
+                                             FalseColor="{StaticResource Secondary}"
+                                             NullColor="White"/>
+
+            <Style TargetType="Button" x:Key="menuButton">
+                <Setter Property="TextColor" Value="{DynamicResource White}"/>
+                <Setter Property="WidthRequest" Value="60"/>
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="BorderColor" Value="{DynamicResource Primary}"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="Padding" Value="0,10"/>
+                <Setter Property="Margin" Value="0,5"/>
+            </Style>
+
+            <DataTemplate x:Key="marsImagesTemplate">
+                <Grid RowDefinitions="20,*">
+                    <Label Grid.Row="0"
+                           Text="{Binding earth_date}"/>
+                    <Image Grid.Row="1" 
+                           Source="{Binding img_src}"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalOptions="FillAndExpand"
+                           Aspect="AspectFill"/>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="cameraTypeTemplate">
+                <Button Style="{StaticResource menuButton}" 
+                        WidthRequest="100"
+                        Text="{Binding Type}"
+                        BackgroundColor="{Binding IsSelected, Converter={StaticResource SelectedButtonConverter}}"
+                        Command="{Binding BindingContext.GoSelectCamera, Source={x:Reference cameras}}"
+                        CommandParameter="{Binding .}"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto,50,*">
+        <Label Grid.Row="0"
+                   Text="Select camera:"
+                   FontAttributes="Bold"
+                   FontSize="14"
+                   Padding="0,5"/>
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding BindingContext.CameraTypes, Source={x:Reference cameraView}}"
+                        ItemTemplate="{StaticResource cameraTypeTemplate}"
+                        x:Name="cameras">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"
+                                           ItemSpacing="3"/>
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+        <CollectionView 
+            Grid.Row="2"
+            Margin="0,10"
+            ItemsSource="{Binding BindingContext.MarsPhotos, Source={x:Reference cameraView}}"
+            ItemTemplate="{StaticResource marsImagesTemplate}"
+            ItemsLayout="VerticalList">
+            <CollectionView.EmptyView>
+                <Image
+                            Source="{DynamicResource astronautGray}"
+                            Opacity=".3"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Aspect="AspectFit"/>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </Grid>
+</ContentView>
