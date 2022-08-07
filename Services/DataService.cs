@@ -1,5 +1,4 @@
-﻿using Android.Telephony.Data;
-using AskSpace.Models;
+﻿using AskSpace.Models;
 using Newtonsoft.Json;
 using SpaceScience.Interfaces;
 using System;

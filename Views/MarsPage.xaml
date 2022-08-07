@@ -41,7 +41,8 @@
         <Grid Grid.Row="0"
               ColumnDefinitions="50,*,50">
             <ImageButton Grid.Column="0"
-                         Source="back_icon"
+                         Source="{StaticResource backButton}"
+                         HeightRequest="25"
                          Command="{Binding GoBack}"
                          Margin="10"/>
 

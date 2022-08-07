@@ -1,4 +1,5 @@
-﻿using SpaceScience.Interfaces;
+﻿using Microsoft.Maui.Dispatching;
+using SpaceScience.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,13 @@ namespace SpaceScience.ViewModels
     {
         protected readonly INavigationService _navigationService;
         protected readonly IDataService _dataService;
+        protected readonly IDispatcher _dispatcher;
 
-        public ViewModelBase(INavigationService navigationService, IDataService dataService)
+        public ViewModelBase(INavigationService navigationService, IDataService dataService, IDispatcher dispatcher)
         {
             _navigationService = navigationService;
             _dataService = dataService;
+            _dispatcher = dispatcher;
         }
 
         #region properties

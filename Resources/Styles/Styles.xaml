@@ -4,9 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <x:String x:Key="astronautGray">astronaut_gray</x:String>
-    <x:String x:Key="astronautBlue">astronaut_blue</x:String>
-    <x:String x:Key="dotnetBot">dotnet_bot</x:String>
+    <x:String x:Key="astronautGray">astronaut_gray.png</x:String>
+    <x:String x:Key="astronautBlue">astronaut_blue.png</x:String>
+    <x:String x:Key="dotnetBot">dotnet_bot.svg</x:String>
+    <x:String x:Key="backButton">back_icon.png</x:String>
 
 
     <Style TargetType="ActivityIndicator">

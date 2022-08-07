@@ -11,12 +11,10 @@ namespace SpaceScience.ViewModels
 {
     public class ApodPageViewModel : ViewModelBase
     {
-        private readonly IDispatcher _dispatcher;
         public ApodPageViewModel(INavigationService navigationService
             , IDataService dataService
-            , IDispatcher dispatcher) : base(navigationService, dataService)
+            , IDispatcher dispatcher) : base(navigationService, dataService, dispatcher)
         {
-            _dispatcher = dispatcher;
         }
 
         #region properties

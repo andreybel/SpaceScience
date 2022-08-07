@@ -1,4 +1,5 @@
 ﻿using AskSpace.Models;
+using Microsoft.Maui.Dispatching;
 using SpaceScience.Interfaces;
 using SpaceScience.Services;
 using System;
@@ -12,7 +13,9 @@ namespace SpaceScience.ViewModels
 {
     public class MarsPageViewModel : ViewModelBase
     {
-        public MarsPageViewModel(INavigationService navigationService, IDataService dataService ) : base(navigationService, dataService)
+        public MarsPageViewModel(INavigationService navigationService
+            , IDataService dataService
+            , IDispatcher dispatcher ) : base(navigationService, dataService, dispatcher)
         {
 
         }
@@ -163,7 +166,11 @@ namespace SpaceScience.ViewModels
         public override async Task InitializeAsync(INavigationParameters parameters)
         {
             Title = "Mars";
-            LoadData();
+            _dispatcher.StartTimer(TimeSpan.FromMilliseconds(50), () =>
+            {
+                LoadData();
+                return false;
+            });
             await base.InitializeAsync(parameters);
         }
 

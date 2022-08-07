@@ -1,4 +1,5 @@
-﻿using SpaceScience.Interfaces;
+﻿using Microsoft.Maui.Dispatching;
+using SpaceScience.Interfaces;
 using SpaceScience.Views;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,9 @@ namespace SpaceScience.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        public MainPageViewModel(INavigationService navigationService, IDataService dataService) : base(navigationService, dataService)
+        public MainPageViewModel(INavigationService navigationService
+            , IDataService dataService
+            , IDispatcher dispatcher) : base(navigationService, dataService, dispatcher)
         {
         }
 
