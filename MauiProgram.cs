@@ -20,6 +20,7 @@ public static class MauiProgram
 				containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
 				containerRegistry.RegisterForNavigation<MarsPage, MarsPageViewModel>();
 				containerRegistry.RegisterForNavigation<ApodPage, ApodPageViewModel>();
+				containerRegistry.RegisterForNavigation<MapPage, MapPageViewModel>();
 
                 containerRegistry.RegisterScoped<IDataService, DataService>();
 			})

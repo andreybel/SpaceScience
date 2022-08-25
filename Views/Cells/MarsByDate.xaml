@@ -30,10 +30,11 @@
                             MaximumDate="{Binding MaxDate}"
                             Date="{Binding SelectedDate, Mode=TwoWay}"/>
 
-        <CollectionView Grid.Row="2"
-                            Margin="0,10"
-                        ItemsSource="{Binding BindingContext.MarsPhotos, Source={x:Reference dateView}}"
-                        ItemTemplate="{StaticResource marsImagesTemplate}">
+        <CollectionView 
+            Grid.Row="2"
+            Margin="0,10"
+            ItemsSource="{Binding BindingContext.MarsPhotos, Source={x:Reference dateView}}"
+            ItemTemplate="{StaticResource marsImagesTemplate}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical"
                            ItemSpacing="10" />

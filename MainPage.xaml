@@ -33,6 +33,12 @@
                     Command="{Binding GoData}" 
                     CommandParameter="MARS"/>
 
+            <!--<Button Text="My location"
+                    WidthRequest="250"
+                    SemanticProperties.Hint="My current location"
+                    Command="{Binding GoData}" 
+                    CommandParameter="MyLocation"/>-->
+
         </StackLayout>
     </ScrollView>
 
