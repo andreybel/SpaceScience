@@ -13,7 +13,15 @@
                    Margin="0,10,0,20"
                    HeightRequest="100"
                    WidthRequest="100"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center">
+                <Image.Shadow>
+                    <Shadow 
+                        Brush="Black"
+                        Offset="5,5"
+                        Radius="10"
+                        Opacity="0.7" />
+                </Image.Shadow>
+            </Image>
 
             <Label Text="Make your choice"
                    HorizontalTextAlignment="Center"
@@ -25,13 +33,29 @@
                     WidthRequest="250"
                     SemanticProperties.Hint="Astronomy Picture Of the Day"
                     Command="{Binding GoData}" 
-                    CommandParameter="APOD"/>
+                    CommandParameter="APOD">
+                <Button.Shadow>
+                    <Shadow 
+                        Brush="Black"
+                        Offset="5,5"
+                        Radius="10"
+                        Opacity="0.7" />
+                </Button.Shadow>
+            </Button>
 
             <Button Text="Mars rovers"
                     WidthRequest="250"
                     SemanticProperties.Hint="Mars Rover Photos"
                     Command="{Binding GoData}" 
-                    CommandParameter="MARS"/>
+                    CommandParameter="MARS">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Offset="5,5"
+                        Radius="10"
+                        Opacity="0.7" />
+                </Button.Shadow>
+            </Button>
 
             <!--<Button Text="My location"
                     WidthRequest="250"
