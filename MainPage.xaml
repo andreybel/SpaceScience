@@ -14,13 +14,13 @@
                    HeightRequest="100"
                    WidthRequest="100"
                    HorizontalOptions="Center">
-                <Image.Shadow>
+                <!--<Image.Shadow>
                     <Shadow 
                         Brush="Black"
                         Offset="5,5"
                         Radius="10"
                         Opacity="0.7" />
-                </Image.Shadow>
+                </Image.Shadow>-->
             </Image>
 
             <Label Text="Make your choice"
