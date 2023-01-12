@@ -42,7 +42,6 @@ public static class MauiProgram
                 }))
                 .OnAppStart(navigationService => navigationService.CreateBuilder()
                         .AddNavigationSegment<MainPageViewModel>()
-                        .AddNavigationPage()
                         .NavigateAsync(HandleNavigationError));
             }).ConfigureFonts(fonts =>
 		    {
