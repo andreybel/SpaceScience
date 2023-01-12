@@ -6,6 +6,7 @@ public partial class App : PrismApplication
 	{
 		InitializeComponent();
 
+		//MainPage = new NavigationPage(new MainPage());
 		//MainPage = new AppShell();
 	}
 
